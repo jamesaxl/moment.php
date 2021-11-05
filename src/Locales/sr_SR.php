@@ -9,18 +9,18 @@ return array(
     "weekdays"      => explode('_', 'ponedeljak_utorak_sreda_četvrtak_petak_subota_nedelja'),
     "weekdaysShort" => explode('_', 'pon._uto._sre._čet._pet._sub._ned.'),
     "calendar"      => array(
-        "sameDay"  => '[Danas u]',
-        "nextDay"  => '[Sutra u]',
-        "lastDay"  => '[Juče u]',
+        "sameDay"  => '[Danas u] l',
+        "nextDay"  => '[Sutra u] l',
+        "lastDay"  => '[Juče u] l',
         "lastWeek" => function($moment) {
             $lastWeekDays = array(
-                '[prošle] [nedelje] [u] LT',
-                '[prošlog] [ponedeljka] [u] LT',
-                '[prošlog] [utorka] [u] LT',
-                '[prošle] [srede] [u] LT',
-                '[prošlog] [četvrtka] [u] LT',
-                '[prošlog] [petka] [u] LT',
-                '[prošle] [subote] [u] LT',
+                '[prošle] [nedelje] [u] l',
+                '[prošlog] [ponedeljka] [u] l',
+                '[prošlog] [utorka] [u] l',
+                '[prošle] [srede] [u] l',
+                '[prošlog] [četvrtka] [u] l',
+                '[prošlog] [petka] [u] l',
+                '[prošle] [subote] [u] l',
             );
             return $lastWeekDays[$moment->getWeekDay()];
         },
