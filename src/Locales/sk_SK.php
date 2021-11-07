@@ -3,6 +3,8 @@
 // locale: slovak (sk)
 // author: James Axl https://github.com/jamesaxl
 
+use Moment\Moment;
+
 $ifPast = function ($direction, $trueString, $falseString)
 {
     return $direction === 'past' ? $trueString : $falseString;
@@ -12,7 +14,6 @@ $ifCountSmaller = function ($count, $countSmallerThan, $trueString, $falseString
 {
     return $count < $countSmallerThan ? $trueString : $falseString;
 };
-
 
 return array(
     "months"        => explode('_', 'január_február_marec_apríl_máj_jún_júl_august_september_október_november_december'),
@@ -50,51 +51,51 @@ return array(
         "past"   => 'pred %s',
         "s"      => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, 'pár sekundami', 'pár sekúnd');
         },
         "ss"     => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, '%d sekundami', $ifCountSmaller($count, 5, '%d sekundy', '%d sekúnd'));
         },
         "m"      => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, 'minutou', 'minutu');
         },
-        "mm"     => function ($count, $direction, Moment $m) use ($ifPast)
+        "mm"     => function ($count, $direction, Moment $m) use ($ifPast, $ifCountSmaller)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, '%d minútami', $ifCountSmaller($count, 5, '%d minúty', '%d minút'));
         },
         "h"      => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, 'hodinou', 'hodinu');
         },
-        "hh"     => function ($count, $direction, Moment $m) use ($ifPast)
+        "hh"     => function ($count, $direction, Moment $m) use ($ifPast, $ifCountSmaller)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, '%d hodinami', $ifCountSmaller($count, 5, '%d hodiny', '%d hodin'));
         },
         "d"      => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, 'dňom', 'deň');
         },
-        "dd"     => function ($count, $direction, Moment $m) use ($ifPast)
+        "dd"     => function ($count, $direction, Moment $m) use ($ifPast, $ifCountSmaller)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, '%d dňami', $ifCountSmaller($count, 5, '%d dni', '%d dni'));
         },
         "M"      => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, 'mesiacom', 'mesiac');
         },
-        "MM"     => function ($count, $direction, Moment $m) use ($ifPast)
+        "MM"     => function ($count, $direction, Moment $m) use ($ifPast, $ifCountSmaller)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, '%d mesiacmi', $ifCountSmaller($count, 5, '%d mesiace', '%d mesiacov'));
         },
         "y"      => function ($count, $direction, Moment $m) use ($ifPast)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, 'rokem', 'rok');
         },
-        "yy"     => function ($count, $direction, Moment $m) use ($ifPast)
+        "yy"     => function ($count, $direction, Moment $m) use ($ifPast, $ifCountSmaller)
         {
-            return $ifPast($direction, 'okamžikem', 'okamžik');
+            return $ifPast($direction, '%d rokmi', $ifCountSmaller($count, 5, '%d roky', '%d rokov'));
         },
     ),
     "ordinal"       => function ($number)
