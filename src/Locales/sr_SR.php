@@ -3,6 +3,18 @@
 // locale: serbian (sr)
 // author: James Axl https://github.com/jamesaxl
 
+use Moment\Moment;
+
+$ifPast = function ($direction, $trueString, $falseString)
+{
+    return $direction === 'past' ? $trueString : $falseString;
+};
+
+$ifCountSmaller = function ($count, $countSmallerThan, $trueString, $falseString)
+{
+    return $count < $countSmallerThan ? $trueString : $falseString;
+};
+
 return array(
     "months"        => explode('_', 'januar_februar_mart_april_maj_jun_jul_avgust_septembar_oktobar_novembar_decembar'),
     "monthsShort"   => explode('_', 'jan._feb._mar._apr._maj_jun_jul_avg._sep._okt._nov._dec.'),
@@ -53,7 +65,7 @@ return array(
         "doy" => 4  // The week that contains Jan 4th is the first week of the year.
     ),
     "customFormats" => array(
-        "LTS"   => "G:i:s", // 20:30
+        "LTS"   => "G:i:s", // 20:30:35
         "LT"   => "G:i", // 20:30
         "L"    => "d/m/Y", // 04/09/1986
         "l"    => "j/n/Y", // 4/9/1986
