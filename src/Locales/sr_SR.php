@@ -43,18 +43,83 @@ return array(
     "relativeTime"  => array(
         "future" => 'za %s',
         "past"   => 'pre %s',
-        "s"      => '',
-        "ss"     => '',
-        "m"      => '',
-        "mm"     => '',
-        "h"      => '',
-        "hh"     => '',
-        "d"      => '',
-        "dd"     => '',
-        "M"      => '',
-        "MM"     => '',
-        "y"      => '',
-        "yy"     => '',
+        "s"      => 'nekoliko sekundi',
+        "ss"     => function ($number)
+        {
+            if (1 === $number) {
+                return '%d  sekunda';
+            }  else if(2 === $number) {
+                return '%d sekunde';
+            }
+
+            return '%d sekundi';
+        },
+        "m"      => function ($count, $direction, Moment $m) use ($ifPast)
+        {
+            return $ifPast($direction, 'jednog minuta', 'jedan minut');
+        },
+        "mm"     => function ($number)
+        {
+            if (1 === $number) {
+                return '%d minut';
+            }
+
+            return '%d minuta';
+        },
+        "h"      => function ($count, $direction, Moment $m) use ($ifPast)
+        {
+            return $ifPast($direction, 'jednog sata', 'jedan sat');
+        },
+        "hh"     => function ($number)
+        {
+            if (1 === $number) {
+                return '%d sat';
+            } else  if (2 === $number) {
+                return '%d sata';
+            }
+
+            return '%d sati';
+        },
+        "d"      => function ($count, $direction, Moment $m) use ($ifPast)
+        {
+            return $ifPast($direction, 'jednog dana', 'jedan dan');
+        },
+        "dd"     => function ($number)
+        {
+            if (1 === $number) {
+                return '%d dan';
+            }
+
+            return '%d dana';
+        },
+        "M"      => function ($count, $direction, Moment $m) use ($ifPast)
+        {
+            return $ifPast($direction, 'jednog meseca', 'jedan mesec');
+        },
+        "MM"     => function ($number)
+        {
+            if (1 === $number) {
+                return '%d mesec';
+            } else if(2 === $number) {
+                return '%d meseca';
+            }
+
+            return 'meseci';
+        },
+        "y"      => function ($count, $direction, Moment $m) use ($ifPast)
+        {
+            return $ifPast($direction, 'jedne godine', 'jednu godinu');
+        },
+        "yy"     => function ($number)
+        {
+            if (1 === $number) {
+                return '%d godinu';
+            } else if(2 === $number) {
+                return '%d godine';
+            }
+
+            return '%d godina';
+        },
     ),
     "ordinal"       => function ($number)
     {
